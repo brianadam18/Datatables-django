@@ -1,0 +1,108 @@
+<!-- Modal -->
+<div class="modal fade" {% block modal-id %} id="addModal" {% endblock modal-id %} tabindex="-1"
+    aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">
+                    {% block modal-title %} <i class="fas fa-plus"></i>&nbsp;&nbsp;Add Item {% endblock modal-title %}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" {% block action %} action="/add_item" {% endblock action %} autocomplete="off">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <!-- Block Id -->
+                    {% block Value-id %}{% endblock Value-id %}
+
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-light side-label">
+                            <i class="fas fa-cubes"></i>
+                        </span>
+                        <input type="text" class="form-control" name="nama_barang" maxlength="40"
+                            placeholder="Nama Barang">
+
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-light side-label">
+                            <i class="fas fa-box"></i>
+                        </span>
+                        <input type="text" class="form-control" name="no_sku" maxlength="15" placeholder="SKU" required>
+
+                    </div>
+                    <div class="input-group mb-3">
+                        <label>
+                            <span class="btn border-secondary bg-light side-label" style="border-radius: 4px 0px 0px 4px ;">
+                                <i class="fas fa-ruler"></i>
+                            </span>
+                        </label>
+                        <select class="form-select" name="ukuran" required>
+                            {% block size-option %}
+                            <option value="" hidden>Pilih Ukuran</option>
+                            {% endblock size-option %}
+                            <option>36</option>
+                            <option>37</option>
+                            <option>38</option>
+                            <option>39</option>
+                            <option>40</option>
+                            <option>41</option>
+                            <option>42</option>
+                            <option>43</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-light side-label">
+                            <i class="fas fa-boxes"></i>
+                        </span>
+                        <input type="text" class="form-control" name="jumlah_barang" maxlength="10"
+                            placeholder="Jumlah Barang" required>
+
+                    </div>
+                    <div class="input-group mb-3">
+                        <label>
+                            <span class="btn border-secondary bg-light side-label" style="border-radius: 4px 0px 0px 4px ;">
+                                <i class="fas fa-box-open"></i>
+                            </span>
+                        </label>
+                        <select class="form-select" name="Jenis_barang" required>
+                            {% block option %}
+                            <option value="" hidden>Pilih Jenis Barang</option>
+                            {% endblock option %}
+                            <option>disabled</option>
+                            <option>Hush Puppies</option>
+                            <option>Jordan</option>
+                            <option>New Balance</option>
+                            <option>Nike</option>
+                            <option>Converse</option>
+                            <option>Vans</option>
+                            <option>Champion</option>
+                            <option>New York</option>
+                            <option>Rebook</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control" name="note" rows="7" maxleght="200"
+                            placeholder="Keterangan"></textarea>
+                    </div>
+
+                    <div class="mt-4" style="width: 100%;">
+                        <button type="submit" class="btn btn-secondary mb-3">
+                        {% block btn-action %}<i class="fas fa-plus"></i>&nbsp;&nbsp; Edit Item{% endblock btn-action %}
+                        </button>
+                        <button type="reset" class="btn btn-outline-dark mb-3 mx-2" style="width: 50px;" title="Reset">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                        <a href="{% url 'home' %}" class="btn btn-outline-dark mb-3 mx-2"
+                            style="width: 50px;" title="close">
+                            <i class="fas fa-times"></i>
+                        </a>
+
+                    </div>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

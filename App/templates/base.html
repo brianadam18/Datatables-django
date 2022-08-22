@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link href={% static "img/favicon.ico" %} rel="shortcut icon">
+    <!--- Logo -->
+    <link href={% static "img/logo.ico" %} rel="shortcut icon">
+    <!--- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Static CSS -->
+    <link rel="stylesheet" href={% static "css/style.css" %}>
+    <!-- Data Tables CSS -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.1/af-2.4.0/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/datatables.min.css" />
+
+    <title>Management Inventory</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="col-sm">
+                    <a class="navbar-brand flex-grow-1" style="text-align: center; color: #fff" ; margin-left: 25px;>
+                        {% block navbar-content %}{% endblock navbar-content %}
+                    </a>
+                </div>
+                <!--  Input Seacrh outsite -->
+                <div class="d-flex" style="margin-right: 25px;">
+                    <div class="input-group input-group-sm">
+                        <a class="btn btn-success text-center" style="width: 40;" data-bs-toggle="modal"
+                            data-bs-target="#addModal">
+                            <i class="fas fa-plus"></i>
+                            </a>
+                            <input class="form-control" type="search" id="search" placeholder="Search"
+                                aria-label="Search" arial-label="Search">
+                            <a href="{% url 'home' %}" class="btn btn-secondary btn-sm"><i
+                                    class="fas fa-sync-alt"></i></a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- ===== Block content (ROOT) ====== -->
+        {% block content %} {% endblock content %}
+        <!-- ===== INCLUDE PAGE ====== -->
+        {% include 'add.html' %}
+    </div> <!-- END //.wrapper -->
+    <!-- ===== Footer ====== -->
+    <footer class="bg-dark text-center text-lg-center" id="footer" style="color:#fff;">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">&copy; {% now "Y" %} Copyright:
+            <a class="text-light" href="#" style="text-decoration: none;">
+                <span style="color: greenyellow;">github.com/brianadam18</span>
+            </a>
+
+        </div>
+    </footer>
+
+
+    <!-- Boostrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- Data Tables JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.1/af-2.4.0/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/datatables.min.js"></script>
+    
+    <!-- Data Script -->
+    <script>
+
+        $('#example').DataTable({
+            //DataTables config
+            paging: true, // Pagination
+            pageLegth: 10, // Data per page
+            lengthChange: true,// Show the dropdown to select the number of data per page
+            autoWidth: true,// Control the auto width on colums
+            searching: true, // input search
+            bInfo: true, // Info on footer
+            bSort: true,// Filter A to Z and Z to A (and numbers)
+
+            //BUTTONS
+            dom: 'lBfrtip',
+            buttons: [
+                {
+                    extend: 'copy',
+                    text: '<i class="fas fa-clone"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Copy',
+                    //Choose the coloums you  with to export
+                    // exportOptions: {
+                    //     coloumns: [0, 1, 2, 3, 4, 5]
+                    // },
+                },
+
+                {
+                    extend: 'excel',
+                    text: '<i class="fas fa-file-excel"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Excel',
+                },
+
+                {
+                    extend: 'pdf',
+                    text: '<i class="fas fa-file-pdf"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'PDF',
+                    //Center the table
+                    tableHeader: {
+                        aligment: 'center'
+                    },
+                    //Font Size and Optimization
+                    customize: function (doc) {
+                        doc.styles.tableHeader.alignment = 'center';
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                        doc.styles.tableHeader.fontSize = 7;
+                        doc.defaultStyle.fontSize = 6;
+                        // 100% width of the table
+                        doc.content[1].table.widths =
+                            Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                    },
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Print',
+                    //Font size
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    },
+                }]
+        });
+        //Enable search box Outside
+        var newSearch = $('#example').DataTable();
+        $('#search').keyup(function () {
+            newSearch.search($(this).val()).draw();
+        });
+    </script>
+
+</body>
+
+</html>

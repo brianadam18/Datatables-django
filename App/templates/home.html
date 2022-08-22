@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+<!-- Navbar content -->
+{% block navbar-content %}
+<i style="color: whitesmoke;" class="fas fa-cannabis"></i>&nbsp;&nbsp;Management Inventory
+{% endblock navbar-content %}
+
+<!-- Page Content -->
+{% block content %}
+<div class="container">
+    <br><br><br>
+
+        <table class="table table-bordered" id="example" style="text-align: center;">
+            <thead class="table-success">
+                <tr>
+                    <th style="width: 5%;">No</th>
+                    <th style="width: 15%;">Nama Barang</th>
+                    <th style="width: 10%;">SKU</th>
+                    <th style="width: 5%;">Ukuran</th>
+                    <th style="width: 5%;">Jumlah</th>
+                    <th style="width: 10%;">Jenis Barang</th>
+                    <th style="width: 10%;">Updated</th>
+                    <th style="width: 5%;">Edit</th>
+                    <th style="width: 5%;">Delete</th>
+                </tr>
+            </thead>
+            <!-- Data from backend -->
+            {% for item in items %}
+            <tr>
+                <td>{{ item.no_barang }}</td>
+                <td>{{ item.nama_barang }}</td>
+                <td>{{ item.no_sku }}</td>
+                <td>{{ item.ukuran }}</td>
+                <td>{{ item.jumlah_barang }}</td>
+                <td>{{ item.Jenis_barang }}</td>
+                <td>{{ item.create_at | date:'D, d M, Y H:i:s' }}</td>
+                <td>
+                    <a class="btn btn-success text-center" title="Edit Item">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                </td>
+                    <td>
+                        <a class="btn btn-success text-center" title="Delete Item">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+            </tr>
+            {% endfor %}
+        </table>
+    
+         <br><br>
+
+</div> <!-- END //.container -->
+
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        var m = "{{ message }}";
+        swal("Success!", m, "success");
+    </script>
+    {% endif %}
+{% endfor %}
+
+<br><br><br><br>
+{% endblock content %}
+
