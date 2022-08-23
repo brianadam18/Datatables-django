@@ -1,0 +1,37 @@
+{% extends 'add.html' %} 
+
+<!-- modal ID -->
+{% block modal-id %} id="editModal{{ item.pk }}" {% endblock modal-id %}
+<!-- modal Title -->
+{% block modal-title %} <i class="fas fa-edit"></i>&nbsp;&nbsp; Edit Item {% endblock modal-title %}
+<!-- Form Action -->
+{% block action %} action="/edit_item" {% endblock action %}
+<!-- Button Action -->
+{% block btn-action %}<i class="fas fa-server"></i>&nbsp;&nbsp; Edit Item{% endblock btn-action %}
+
+<!--============= All <input> ==============-->
+{% block Value-id %}
+<div class="input-group mb-3">
+    <span class="btn border-secondary bg-light side-label">
+        <i class="fas fa-key"></i>
+    </span>
+    <input type="text" class="form-control" name="no_barang" value="{{ item.no_barang }}" readonly>
+</div>
+{% endblock Value-id %}
+<!-- Nama Barang -->
+{% block Value-nama_barang %} value="{{ item.nama_barang }}" {% endblock Value-nama_barang %}
+<!-- SKU -->
+{% block Value-no_sku %} value="{{ item.no_sku }}" {% endblock Value-no_sku %}
+<!-- Ukuran -->
+{% block option-size %}
+<option style="background-color: #d3d3d3 ; counter-reset: #111">{{item.ukuran}}</option>
+{% endblock option-size %}
+<!-- Jumlah -->
+{% block Value-jumlah_barang %} value="{{ item.jumlah_barang }}" {% endblock Value-jumlah_barang %}
+<!-- Jenis Barang -->
+{% block option %}
+<option style="background-color: #d3d3d3 ; counter-reset: #111">{{item.Jenis_barang}}</option>
+{% endblock option %}
+<!-- Note -->
+{% block Value-note %}{{ item.note }}{% endblock Value-note %}
+

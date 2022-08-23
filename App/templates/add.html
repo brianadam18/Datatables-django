@@ -20,14 +20,13 @@
                             <i class="fas fa-cubes"></i>
                         </span>
                         <input type="text" class="form-control" name="nama_barang" maxlength="40"
-                            placeholder="Nama Barang">
-
+                            placeholder="Nama Barang" required {% block Value-nama_barang %} {% endblock Value-nama_barang %}>
                     </div>
                     <div class="input-group mb-3">
                         <span class="btn border-secondary bg-light side-label">
                             <i class="fas fa-box"></i>
                         </span>
-                        <input type="text" class="form-control" name="no_sku" maxlength="15" placeholder="SKU" required>
+                        <input type="text" class="form-control" name="no_sku" maxlength="15" placeholder="SKU" required {% block Value-no_sku %} {% endblock Value-no_sku %}>
 
                     </div>
                     <div class="input-group mb-3">
@@ -36,7 +35,7 @@
                                 <i class="fas fa-ruler"></i>
                             </span>
                         </label>
-                        <select class="form-select" name="ukuran" required>
+                        <select class="form-select" name="ukuran" required {% block Value-ukuran %} {% endblock Value-ukuran %}>
                             {% block size-option %}
                             <option value="" hidden>Pilih Ukuran</option>
                             {% endblock size-option %}
@@ -55,7 +54,7 @@
                             <i class="fas fa-boxes"></i>
                         </span>
                         <input type="text" class="form-control" name="jumlah_barang" maxlength="10"
-                            placeholder="Jumlah Barang" required>
+                            placeholder="Jumlah Barang" required {% block Value-jumlah_barang %} {% endblock Value-jumlah_barang %}>
 
                     </div>
                     <div class="input-group mb-3">
@@ -64,7 +63,7 @@
                                 <i class="fas fa-box-open"></i>
                             </span>
                         </label>
-                        <select class="form-select" name="Jenis_barang" required>
+                        <select class="form-select" name="Jenis_barang" required {% block Value-Jenis_barang %} {% endblock Value-Jenis_barang %}>
                             {% block option %}
                             <option value="" hidden>Pilih Jenis Barang</option>
                             {% endblock option %}
@@ -83,12 +82,12 @@
 
                     <div class="form-group">
                         <textarea class="form-control" name="note" rows="7" maxleght="200"
-                            placeholder="Keterangan"></textarea>
+                            placeholder="Keterangan">{% block note %}{% endblock note %} </textarea>
                     </div>
 
                     <div class="mt-4" style="width: 100%;">
                         <button type="submit" class="btn btn-secondary mb-3">
-                        {% block btn-action %}<i class="fas fa-plus"></i>&nbsp;&nbsp; Edit Item{% endblock btn-action %}
+                        {% block btn-action %}<i class="fas fa-plus"></i>&nbsp;&nbsp; Add Item{% endblock btn-action %}
                         </button>
                         <button type="reset" class="btn btn-outline-dark mb-3 mx-2" style="width: 50px;" title="Reset">
                             <i class="fas fa-sync-alt"></i>

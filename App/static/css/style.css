@@ -63,6 +63,48 @@ body{
 .dt-buttons {
     margin-bottom: 10px !important;
 }
+/* ------------------------
+# SWEETALERT CUSTOMIZED
+------------------------ */
+.swal-modal {
+    background-color: rgba(0, 0, 0, 0.651);
+    color: #fff;
+}
+.swal-title {
+    color: #fff;
+    font-size: 20px;
+}
+.swal-text {
+    color: #fff;
+    font-size: 15px;
+}
+/* BUTTONS */
+.swal-button {
+    padding : 7px 19px;
+    border-radius: 5px;
+    background-color: #198754;
+    font-size: 12px;
+    border: 1px #198754;
+}
+.swal-button:focus{
+    box-shadow: none;
+}
+.swal-button:not([disabled]):hover{
+    background: transparent;
+    color: #fff;
+    border: 1px #198754;
+}
+/* ICONS */
+.swal-icon--success__hide-corners{
+    background: none !important;
+}
+.swal-icon--success:before,
+.swal-icon--success:after{
+    background: none !important;
+}
+
+
+
 /* ------------------------ 
 # OTHERS
 ------------------------ */

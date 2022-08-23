@@ -37,17 +37,16 @@ def add_item(request):
 # Function to View Item
 
 
-def item(request, item_id):
-    item = Item.objects.get(id=item_id)
+def item(request, no_barang):
+    item = Item.objects.get(no_barang=no_barang)
     if item != None:
         return render(request, 'edit.html', {'item': item})
 
 # Function to Edit Item
 
-
 def edit_item(request):
     if request.method == "POST":
-        item = Item.objects.get(id=request.POST.get('id'))
+        item = Item.objects.get(no_barang=request.POST.get('no_barang'))
         if item != None:
             item.nama_barang = request.POST.get('nama_barang')
             item.no_sku = request.POST.get('no_sku')
@@ -61,8 +60,8 @@ def edit_item(request):
 # Function to Delete Item
 
 
-def delete_item(request, item_id):
-    item = Item.objects.get(id=item_id)
+def delete_item(request, no_barang):
+    item = Item.objects.get(no_barang=no_barang)
     if item != None:
         item.delete()
         messages.success(request, 'Item deleted successfully')

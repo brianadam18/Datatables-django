@@ -9,9 +9,9 @@ urlpatterns = [
     # Path to ADD Item
     path('add_item', views.add_item, name='add_item'),
     # Path to View Item
-    path('edit/<str:item_id>', views.item, name='item'),
+    path('edit/<str:no_barang>', views.item, name='item'),
     # Path to Edit Item
     path('edit_item', views.edit_item, name='edit_item'),
     # Path to Delete Item
-    path('delete_item/<str:item_id>', views.delete_item, name='delete_item'),
+    path('delete_item/<str:no_barang>', views.delete_item, name='delete_item'),
 ]
